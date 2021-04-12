@@ -1,6 +1,14 @@
 import sys
 import requests
 
+def hackertarget(domain):
+    url = "https://api.hackertarget.com/hostsearch/?q={domain}".format(domain = domain)
+    r = requests.get(url)
+    textReq = r.text.splitlines()
+    for line in textReq:
+        print(line.split(",")[0])
+
+
 def bufferover(domain):
     url = "https://dns.bufferover.run/dns?q=.{domain}".format(domain=domain)
     r = requests.get(url)
@@ -27,6 +35,7 @@ def main():
     crtsh(domain)
     urlscan(domain)
     bufferover(domain)
+    hackertarget(domain)
 
         
 
